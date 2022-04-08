@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+	th:replace="students::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>This is Home page</title>
+</head>
+<body>
+
+	<div class="starter-template">
+		<section>
+			<h1>List of Students</h1>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#exampleModal">Add New</button>
+
+			<table class="table table-stripped">
+				<thead>
+					<tr>
+						<td>Id</td>
+						<td>Name</td>
+						<td>Department</td>
+						<td>Updated By</td>
+						<td>Updated On</td>
+						<td>Edit</td>
+						<td>Delete</td>
+					</tr>
+				</thead>
+				<tr th:each="student:${students}">
+					<td th:text="${student.Id}">Id</td>
+					<td th:text="${student.name}">Name</td>
+					<td th:text="${student.Department}">Department</td>
+					<td th:text="${student.updatedBy}">Updated By</td>
+					<td th:text="${student.updatedOn}">Updated On</td>
+					<td><a th:href="@{/students/getOne/(Id=${student.Id})}"
+						class="btn btn-warning editBtn"> Edit</a></td>
+					<td><a th:href="@{/students/delete/(Id=${student.Id})}"
+						class="btn btn-danger deleteButton"> Delete</a></td>
+				</tr>
+			</table>
+	</div>
+	</section>
+</body>
+</html>
